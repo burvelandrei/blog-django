@@ -3,5 +3,11 @@
 {% block  title>%} Главная страница {% endblock %}
 
 {% block content %}
-<h3>Hello</h3>
+<ul>
+    {% for publication in publications %}
+    <li>
+        <a href="{% url 'publication_detail' publication.id %}">{{ publication.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}
