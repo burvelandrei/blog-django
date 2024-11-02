@@ -13,10 +13,11 @@ def index(request):
 def publication_detail(request, id):
     publication = get_object_or_404(Publication, id=id)
     comments = Comment.objects.filter(publication=id)
+    form = CommentForm()
     return render(
         request,
         "publication/publication_detail.html",
-        {"publication": publication, "comments": comments},
+        {"publication": publication, "comments": comments, "form": form},
     )
 
 def add_publication(request):
@@ -43,7 +44,7 @@ def add_comment(request, id):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            comment = form.save()
+            comment = form.save(commit=False)
             comment.publication = publication
             comment.save()
             return redirect('publication_detail', id=id)
