@@ -43,7 +43,7 @@ def add_comment(request, id):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            comment = form.save(commit=False)
+            comment = form.save()
             comment.publication = publication
             comment.save()
             return redirect('publication_detail', id=id)
