@@ -6,4 +6,24 @@
 <h2>{{ publication.title }}</h2>
 <p>{{ publication.content }}</p>
 
+<div>
+    <form action="{% url 'delete_publication' id=publication.id %}" method="POST">
+        {% csrf_token %}
+        <button class="delete_publication" type="submit">Удалить публикацию</button>
+    </form>
+</div>
+
+<h4>Комментарии</h4>
+<ul>
+    {% for comment in comments %}
+    <li>{{ comment.content }}</li>
+    {% endfor %}
+</ul>
+
+<form method="post" action="{% url 'add_comment' id=publication.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить</button>
+</form>
+
 {% endblock %}

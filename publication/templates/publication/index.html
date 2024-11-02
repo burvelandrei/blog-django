@@ -3,6 +3,11 @@
 {% block  title>%} Главная страница {% endblock %}
 
 {% block content %}
+
+<h2>Блог с анекдотами</h2>
+<form action="{% url 'add_publication' %}" method="GET">
+    <button class="add_publication" type="submit">Добавить публикацию</button>
+
 <ul>
     {% for publication in publications %}
     <li>
