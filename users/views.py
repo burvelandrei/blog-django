@@ -9,37 +9,37 @@ def profile(request):
 
 def register(request):
     if request.method == 'GET':
-        form = RegistrationForm()
-        return render(request, 'users/register.html', {'form': form})
+        registration_form = RegistrationForm()
+        return render(request, 'users/register.html', {'form': registration_form})
     elif request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
+        registration_form = RegistrationForm(request.POST)
+        if registration_form.is_valid():
+            user = registration_form.save()
             login(request, user)
             return redirect('index')
         else:
             # Если форма невалидна, передаем ее обратно в шаблон с ошибками
-            return render(request, 'users/register.html', {'form': form})
+            return render(request, 'users/register.html', {'form': registration_form})
     else:
-        form = RegistrationForm()
-    return render(request, 'users/register.html', {'form': form})
+        registration_form = RegistrationForm()
+    return render(request, 'users/register.html', {'form': registration_form})
 
 def user_login(request):
     if request.method == 'GET':
-        form = LoginForm()
-        return render(request, 'users/login.html', {'form': form})
+        login_form = LoginForm()
+        return render(request, 'users/login.html', {'form': login_form})
     elif request.method == 'POST':
-        form = LoginForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
+        login_form = LoginForm(request, data=request.POST)
+        if login_form.is_valid():
+            username = login_form.cleaned_data.get('username')
+            password = login_form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
                 return redirect('index')
     else:
-        form = LoginForm()
-    return render(request, 'users/login.html', {'form': form})
+        login_form = LoginForm()
+    return render(request, 'users/login.html', {'form': login_form})
 
 def user_logout(request):
     if request.method == 'GET':
