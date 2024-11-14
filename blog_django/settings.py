@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
-from config_db import load_config, DB
+from environs import Env
 
-# Загружаем параметры базы данных
-config_db: DB = load_config()
+
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)1c9a&w0u5o03cpg95xjr%1ff)0-=z1#zqx^*idcr&98w!xbeb'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -83,11 +84,11 @@ WSGI_APPLICATION = 'blog_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config_db.db_name,
-        'USER': config_db.db_user,
-        'PASSWORD': config_db.db_password,
-        'HOST': config_db.db_host,
-        'PORT': config_db.db_port,
+        'NAME': env("DB_name"),
+        'USER': env("DB_user"),
+        'PASSWORD': env("DB_password"),
+        'HOST': env("DB_host"),
+        'PORT': int(env("DB_port")),
     }
 }
 
