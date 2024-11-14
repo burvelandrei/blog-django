@@ -2,12 +2,23 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import CustomUser
 
+
 class RegistrationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = (
+            "username",
+            "first_name",
+            "last_name",
+            "birth_date",
+            "email",
+            "password1",
+            "password2",
+        )
+        labels = {'username': "Username пользователя",'birth_date': 'Дата рождения'}
 
 class LoginForm(AuthenticationForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'password')
+        fields = ("username", "password")
+        labels = {'username': "Username пользователя"}

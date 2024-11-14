@@ -6,12 +6,14 @@
 <h2>{{ publication.title }}</h2>
 <p>{{ publication.content }}</p>
 
-<div>
-    <form action="{% url 'delete_publication' id=publication.id %}" method="POST">
-        {% csrf_token %}
-        <button class="delete_publication" type="submit">Удалить публикацию</button>
-    </form>
-</div>
+{% if is_author %}
+    <div>
+        <form action="{% url 'delete_publication' id=publication.id %}" method="POST">
+            {% csrf_token %}
+            <button class="delete_publication" type="submit">Удалить публикацию</button>
+        </form>
+    </div>
+{% endif %}
 
 <h4>Комментарии</h4>
 <ul>

@@ -1,6 +1,6 @@
 from django.db import models
 from publication.models import Publication
-from django.utils import timezone
+from users.models import CustomUser
 
 
 class TimeStappedModel(models.Model):
@@ -16,6 +16,9 @@ class Comment(TimeStappedModel):
         Publication, on_delete=models.CASCADE, related_name="comments"
     )
     content = models.TextField()
+    author = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name="comments"
+    )
 
     def __str__(self):
         return f"Comment on {self.publication.title}"
