@@ -47,6 +47,32 @@ def add_publication(request):
         )
 
 
+def edit_publication(request, id):
+    publication = get_object_or_404(Publication, id=id)
+
+    if request.method == "GET":
+        publication_form = PublicationForm(instance=publication)
+        return render(
+            request, "publication/edit_publication.html", {"form": publication_form}
+        )
+    elif request.method == "POST":
+        publication_form = PublicationForm(request.POST, instance=publication)
+        if publication_form.is_valid():
+            publication = publication_form.save(commit=False)
+            if not publication.author_id:
+                # Обработка ошибки, если автор не указан
+                return render(
+                    request,
+                    "publication/edit_publication.html",
+                    {"form": publication_form, "error_message": "Автор обязателен"}
+                )
+            publication.save()
+            return redirect("index")
+        return render(
+            request, "publication/edit_publication.html", {"form": publication_form}
+        )
+
+
 def delete_publication(request, id):
     publication = Publication.objects.filter(id=id)
     publication.delete()

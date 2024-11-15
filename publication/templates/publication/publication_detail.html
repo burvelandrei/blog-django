@@ -12,6 +12,9 @@
             {% csrf_token %}
             <button class="delete_publication" type="submit">Удалить публикацию</button>
         </form>
+        <form action="{% url 'edit_publication' id=publication.id %}" method="GET">
+            <button class="edit_publication" type="submit">Редактировать публикацию</button>
+        </form>
     </div>
 {% endif %}
 
