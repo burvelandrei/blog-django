@@ -1,45 +1,72 @@
 body {
-    background-color: black;
+    background-color: #121212;
+    color: #ffffff;
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-header {
-    background-color: black;
-    color: white;
-    padding: 0px 0;
-    text-align: center;
-    font-family: Arial;
+.header-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1f1f1f;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #a72828;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #8b2121;
 }
 
 h4 {
-    color: white;
-    font-family: Arial;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
 }
 
 p {
-    color: white;
+    color: #ffffff;
     padding: 10px;
 }
 
-
 h2 {
-    color: white;
-    background-color: black;
+    color: #ffffff;
+    background-color: #1f1f1f;
     text-align: center;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .error {
-    color: red;
+    color: #ff4d4d;
 }
 
 ul li {
-    color: white;
-    background-color: black;
+    color: #ffffff;
+    background-color: #1f1f1f;
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    list-style-type: none;
+    margin-left: -15px;
 }
 
 form {
@@ -49,7 +76,7 @@ form {
 label {
     display: block;
     margin-top: 10px;
-    color: white;
+    color: #ffffff;
 }
 
 input,
@@ -59,33 +86,29 @@ textarea {
     margin-top: 5px;
     border-radius: 5px;
     resize: none;
-    color: white;
-    background-color: black;
+    color: #ffffff;
+    background-color: #1f1f1f;
+    border: 1px solid #333333;
 }
 
 button {
-    display: block;
+    display: inline-block;
     padding: 10px 20px;
     background-color: #a72828;
-    color: white;
+    color: #ffffff;
     border: none;
     margin-top: 10px;
     cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-
-.add_publication_index {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 20px;
+button:hover {
+    background-color: #8b2121;
 }
 
-.edit_publication {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 20px;
-}
-
+.add_publication_index,
+.edit_publication,
 .delete_publication {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -98,8 +121,8 @@ div {
 }
 
 h5 {
-    color: white;
-    background-color: black;
+    color: #ffffff;
+    background-color: #1f1f1f;
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
@@ -107,5 +130,13 @@ h5 {
 
 .nav {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav form {
+    margin-left: 20px;
+}
+
+.nav form:first-child {
+    margin-left: 0;
 }

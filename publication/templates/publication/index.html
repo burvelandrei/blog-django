@@ -11,24 +11,6 @@
     </form>
 {% endif %}
 
-<nav>
-    {% if user.is_authenticated %}
-        <form action="{% url 'profile' %}" method="GET">
-            <button type="submit">Профиль</button>
-        </form>
-        <form action="{% url 'logout' %}" method="GET">
-            <button type="submit">Выйти</button>
-        </form>
-    {% else %}
-        <form action="{% url 'login' %}" method="GET">
-            <button type="submit">Войти</button>
-        </form>
-        <form action="{% url 'register' %}" method="GET">
-            <button type="submit">Зарегистрироваться</button>
-        </form>
-    {% endif %}
-</nav>
-
 <ul>
     {% for publication in publications %}
     <li>
