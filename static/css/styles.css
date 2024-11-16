@@ -54,6 +54,15 @@ h2 {
     border-radius: 5px;
 }
 
+h3 {
+    color: #ffffff;
+    background-color: #1f1f1f;
+    text-align: right;
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 .error {
     color: #ff4d4d;
 }

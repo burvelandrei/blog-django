@@ -4,6 +4,8 @@
 
 {% block content %}
 <h2>{{ publication.title }}</h2>
+<h3>Автор: {{author}}</h3>
+<h4>Текст публикации</h4>
 <p>{{ publication.content }}</p>
 
 {% if is_author %}
@@ -21,7 +23,7 @@
 <h4>Комментарии</h4>
 <ul>
     {% for comment in comments %}
-    <li>{{ comment.content }}</li>
+    <li>{{ comment.content }} - {{comment.author.username}}</li>
     {% endfor %}
 </ul>
 

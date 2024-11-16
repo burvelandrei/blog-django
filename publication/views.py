@@ -14,7 +14,8 @@ def publication_detail(request, id):
     publication = get_object_or_404(Publication, id=id)
     comments = Comment.objects.filter(publication=id)
     comment_form = CommentForm()
-    is_author = publication.author == request.user
+    author = publication.author
+    is_author = author == request.user
     return render(
         request,
         "publication/publication_detail.html",
@@ -22,6 +23,7 @@ def publication_detail(request, id):
             "publication": publication,
             "comments": comments,
             "form": comment_form,
+            "author": author,
             "is_author": is_author,
         },
     )
