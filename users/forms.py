@@ -15,10 +15,12 @@ class RegistrationForm(UserCreationForm):
             "password1",
             "password2",
         )
-        labels = {'username': "Username пользователя",'birth_date': 'Дата рождения'}
+        labels = {"username": "Username пользователя", "birth_date": "Дата рождения"}
+        widgets = {"birth_date": forms.DateInput(attrs={"type": "date"})}
+
 
 class LoginForm(AuthenticationForm):
     class Meta:
         model = CustomUser
         fields = ("username", "password")
-        labels = {'username': "Username пользователя"}
+        labels = {"username": "Username пользователя"}
