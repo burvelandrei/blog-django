@@ -12,7 +12,7 @@
         <h1><a href="{% url 'index' %}">HaHabr</a></h1>
         <nav class="nav">
             {% if user.is_authenticated %}
-                <form action="{% url 'profile' %}" method="GET">
+                <form action="{% url 'profile' user.id %}" method="GET">
                     <button type="submit">Профиль</button>
                 </form>
                 <form action="{% url 'logout' %}" method="GET">

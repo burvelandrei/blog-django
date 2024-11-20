@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
+from django.views.generic import DetailView
+from .models import CustomUser
 from .forms import RegistrationForm, LoginForm
 
 
-def profile(request):
-    if request.method == 'GET':
-        return render(request, 'users/profile.html')
+class profile(DetailView):
+    model = CustomUser
+    template_name = "users/profile.html"
+
 
 def register(request):
     if request.method == 'GET':
