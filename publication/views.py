@@ -1,33 +1,30 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import DeleteView
+from django.views.generic import DeleteView, ListView, DetailView
 from .models import Publication
 from .forms import PublicationForm
 from comment.models import Comment
 from comment.forms import CommentForm
 
 
-def index(request):
-    publications = Publication.objects.all()
-    return render(request, "publication/index.html", {"publications": publications})
+class PublicationListView(ListView):
+    model = Publication
+    template_name = 'publication/index.html'
+    context_object_name = 'publications'
 
 
-def publication_detail(request, id):
-    publication = get_object_or_404(Publication, id=id)
-    comments = Comment.objects.filter(publication=id)
-    comment_form = CommentForm()
-    author = publication.author
-    is_author = author == request.user
-    return render(
-        request,
-        "publication/publication_detail.html",
-        {
-            "publication": publication,
-            "comments": comments,
-            "form": comment_form,
-            "author": author,
-            "is_author": is_author,
-        },
-    )
+class PublicationDetailView(DetailView):
+    model = Publication
+    template_name = 'publication/publication_detail.html'
+    context_object_name = 'publication'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        publication = self.get_object()
+        context['comments'] = Comment.objects.filter(publication=publication)
+        context['form'] = CommentForm()
+        context['author'] = publication.author
+        context['is_author'] = publication.author == self.request.user
+        return context
 
 
 def add_publication(request):
@@ -76,7 +73,7 @@ def edit_publication(request, id):
         )
 
 
-class delete_publication(DeleteView):
+class PublicationDeleteView(DeleteView):
     model = Publication
     template_name = "publication/index.html"
     success_url = '/'
@@ -91,4 +88,4 @@ def add_comment(request, id):
             comment.publication = publication
             comment.author = request.user
             comment.save()
-            return redirect("publication_detail", id=id)
+            return redirect("publication_detail", pk=id)
