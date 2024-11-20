@@ -10,7 +10,7 @@
 
 {% if is_author %}
     <div>
-        <form action="{% url 'delete_publication' id=publication.id %}" method="POST">
+        <form action="{% url 'delete_publication' pk=publication.pk %}" method="POST">
             {% csrf_token %}
             <button class="delete_publication" type="submit">Удалить публикацию</button>
         </form>

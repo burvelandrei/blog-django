@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import DeleteView
 from .models import Publication
 from .forms import PublicationForm
 from comment.models import Comment
@@ -75,10 +76,10 @@ def edit_publication(request, id):
         )
 
 
-def delete_publication(request, id):
-    publication = Publication.objects.filter(id=id)
-    publication.delete()
-    return redirect("index")
+class delete_publication(DeleteView):
+    model = Publication
+    template_name = "publication/index.html"
+    success_url = '/'
 
 
 def add_comment(request, id):
