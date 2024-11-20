@@ -5,6 +5,7 @@
 {% block content %}
 <h2>{{ publication.title }}</h2>
 <h3>Автор: {{author}}</h3>
+<h3>Дата публикации: {{publication.created_at|date:"d.m.Y"}}
 <h4>Текст публикации</h4>
 <p>{{ publication.content }}</p>
 
@@ -23,7 +24,7 @@
 <h4>Комментарии</h4>
 <ul>
     {% for comment in comments %}
-    <li>{{ comment.content }} - {{comment.author.username}}</li>
+    <li>{{ comment.content }} - {{ comment.created_at|date:"d.m.Y" }} - {{comment.author.username}}</li>
     {% endfor %}
 </ul>
 
