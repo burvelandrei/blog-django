@@ -5,7 +5,7 @@ from .models import CustomUser
 from .forms import RegistrationForm, LoginForm
 
 
-class profile(DetailView):
+class ProdileDeleteView(DetailView):
     model = CustomUser
     template_name = "users/profile.html"
 
