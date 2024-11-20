@@ -57,7 +57,7 @@ h2 {
 h3 {
     color: #ffffff;
     background-color: #1f1f1f;
-    text-align: right;
+    text-align: left;
     font-family: Arial, sans-serif;
     padding: 10px;
     border-radius: 5px;
@@ -76,6 +76,15 @@ ul li {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     list-style-type: none;
     margin-left: -15px;
+}
+
+ul li a:visited {
+    color: inherit !important;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    color: #ff0000 !important;
 }
 
 form {
